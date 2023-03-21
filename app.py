@@ -1,47 +1,48 @@
+import openai
 import streamlit as st
+
+# pip install streamlit-chat
 from streamlit_chat import message
 
-st.set_page_config(page_title="Albureame AI", page_icon=":wave:", layout="wide")
+openai.api_key = st.secrets["pass"]
 
-txtlist = ["Orale","que ","loco","valedor, te la bañaste", "chido"]
+def generate_response(prompt):
+    completions = openai.Completion.create(
+        engine = "text-davinci-003",
+        prompt = prompt,
+        max_tokens = 1024,
+        n = 1,
+        stop = None,
+        temperature=0.5,
+    )
+    message = completions.choices[0].text
+    return message
 
-#HEADER SECTION
-st.subheader("Hi, I am Chilango :wave:")
-st.title("Una página de Albures")
-st.write("I am passionate to write apps with Python and stuff")
-st.write("[Learn More >](www.google.com)")
-st.write("More stuff ovver here to see if i could deploy continously")
+#Creating the chatbot interface
+st.title("AlbureameAI")
 
-message_history = []
-bot_message_history = ["chid", "carnal", "valedor"]
+# Storing the chat
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
 
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
 
+# We will get the user's input by calling the get_text function
+def get_text():
+    input_text = st.text_input("You: ","Hello, how are you?", key="input")
+    return input_text
 
-# display all the previous message
+user_input = get_text()
 
-#placeholder = st.empty()  # placeholder for latest message
-'''
-while(1):
-    input_ = st.text_input("you:")
-    message_history.append(input_)
-    message(len(message_history))
+if user_input:
+    output = generate_response(user_input)
+    # store the output
+    st.session_state.past.append(user_input)
+    st.session_state.generated.append(output)
 
-    for message_ in message_history:
-        message(message_)
+if st.session_state['generated']:
 
-    for message_ in bot_message_history:
-        message(message_)
-        
-    with placeholder.container():
-       message(message_history[-1]) # display the latest message
-'''
-
-# Create a text input and a text area in the Streamlit app
-text_input = st.text_input("Enter some text:")
-text_area = st.text_area("Text:")
-
-st.write("Stuff", text_area)
-
-
-
-
+    for i in range(len(st.session_state['generated']) - 1, -1, -1):
+        message(st.session_state["generated"][i], key=str(i))
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
