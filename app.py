@@ -31,6 +31,7 @@ map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "atras": ["trueno", "como", "me das", "hago"],
              "leche": ["sacas", "embarro"],
              "blanco": ["sacas", "embarro"],
+             "claro": ["sacas", "embarro"],
              "chispas": ["sacas", "embarro"],
              "crema": ["sacas", "embarro"],
              "chaqueta": ["haces", "me das"],
@@ -101,7 +102,6 @@ def generate_response(prompt):
             index = randrange(len(responses))
             return responses[index]
     f.write(prompt + "\n")
-    st.write("nuevas.csv", prompt + "\n")
     return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
