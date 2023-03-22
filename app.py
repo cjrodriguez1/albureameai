@@ -91,6 +91,7 @@ def generate_response(prompt):
             return responses[index]
     f.write(prompt + "\n")
     st.write("nuevas.csv", prompt + "\n")
+    print("NUEVA LINEA>>> {}".format(prompt))
     return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
