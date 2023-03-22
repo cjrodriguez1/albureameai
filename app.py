@@ -6,6 +6,8 @@ from random import randrange
 from streamlit_chat import message
 
 openai.api_key = st.secrets["pass"]
+f = open("nuevas.csv", "a")
+
 
 map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "grande": ["agarras", "meto", "sientate", "embarro"],
@@ -87,8 +89,8 @@ def generate_response(prompt):
             responses = map_cont[possib[index]]
             index = randrange(len(responses))
             return responses[index]
-
-    return None
+    f.write(prompt + "\n")
+    return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
 st.title("AlburéameAI")
@@ -118,3 +120,5 @@ if st.session_state['generated']:
     for i in range(len(st.session_state['generated']) - 1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+
+f.close()
