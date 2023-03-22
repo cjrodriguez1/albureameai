@@ -8,7 +8,6 @@ from streamlit_chat import message
 openai.api_key = st.secrets["pass"]
 f = open("nuevas.csv", "a")
 
-
 map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "grande": ["agarras", "meto", "sientate", "embarro"],
              "larga": ["agarras", "meto", "sientate", "embarro"],
@@ -39,6 +38,8 @@ map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "panza": ["hago"],
              "pancita": ["hago"],
              "hermana": ["prestas", "pasas", "hago"],
+             "hija": ["prestas", "pasas", "hago"],
+             "hijas": ["prestas", "pasas", "hago"],
              "pulmón": ["tallo"],
              "lomo": ["tallo"],
              "papaya": ["trueno", "como", "exprimo", "me das"], #concha, dona
@@ -53,7 +54,12 @@ map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "cafe": ["exprimo", "saco", "embarras"],
              "café": ["exprimo", "saco", "embarras"],
              "cafecito": ["exprimo", "saco", "embarras"],
-             "mismo": ["mismo"]
+             "mismo": ["mismo"],
+             "alburear": ["alburear"],
+             "sácame": ["embarro"],
+             "sacas": ["embarro"],
+             "palmas": ["haces", "me das"],
+             "pino": ["pongo"]
              }
 
 map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me tomas la palabra", "me agarraste desprevenido"],
@@ -79,10 +85,13 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "tallo": ["ta' lloviendo", "un tallón de limpieza"],
             "sientate": ["te sientes agusto","siéntate, te veo cansado","siéntate a esperar","siéntate, ahorita te lo paso", "te gusta a ti eso?"],
             "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
+            "alburear": ["¿Alburear? Yo le dí clases a Polo Polo", "¿Alburear? Yo les enseñé a Chaf y Queli", "A ver, vamos a medirnos a ver quién es más largo", "Si en albures me la ganas, al burro se la ... ¿cómo iba?", "Siéntate a aprender"]
             }
+openers = ["Voy a Palmas, si me haces ese favor", "Cuando compito, compito duro", "El Pájaro con suelas", "No imaginé ver hijas tan grandes!", "Leche de Zacatecas", "Sácame de una duda", "En Pino Suárez te dejo", "A tu hermana no la he visto"]
 
 def generate_response(prompt):
     for word in prompt.split(" "):
+        word = word.lower()
         if map_palab.get(word) != None:
             possib = map_palab.get(word)
             index = randrange(len(possib))
@@ -91,11 +100,10 @@ def generate_response(prompt):
             return responses[index]
     f.write(prompt + "\n")
     st.write("nuevas.csv", prompt + "\n")
-    print("NUEVA LINEA>>> {}".format(prompt))
     return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
-st.title("AlburéameAI")
+st.title("Alburéame A.I.")
 
 # Storing the chat
 if 'generated' not in st.session_state:
@@ -106,7 +114,7 @@ if 'past' not in st.session_state:
 
 # We will get the user's input by calling the get_text function
 def get_text():
-    input_text = st.text_input("","Comencemos", key="input")
+    input_text = st.text_input("Escribe abajo, novato:","", key="input")
     return input_text
 
 user_input = get_text()
