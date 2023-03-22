@@ -8,6 +8,8 @@ from streamlit_chat import message
 openai.api_key = st.secrets["pass"]
 f = open("nuevas.csv", "a")
 
+st.set_page_config(page_title="AlbureameAI", page_icon=":fire:")
+
 map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
              "grande": ["agarras", "meto", "sientate", "embarro"],
              "larga": ["agarras", "meto", "sientate", "embarro"],
