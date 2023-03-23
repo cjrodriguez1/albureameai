@@ -53,7 +53,7 @@ map_palab = {"nepe": ["agarras", "meto", "sientate", "embarro"],
 
 map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me tomas la palabra", "me agarraste desprevenido"],
             "sumo": ["asumo que tienes razón", "su moronga joven", "te resumo los hechos", "en su molcajete", "su humilde morada"],
-            "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals" "te meto en problemas"],
+            "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals", "te meto en problemas"],
             "alzo": ["al zócalo", "al zorrillo lo mataron"],
             "pongo": ["te pongo en problemas", "te pongo en aprietos"],
             "empino": ["en Pino Suárez"],
