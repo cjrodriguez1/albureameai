@@ -38,7 +38,8 @@ map_palab = {"nepe": ["agarras", "meto", "sientate", "embarro"],
              "concha": ["trueno", "como", "exprimo", "me das"],
              "tripa": ["trueno"],
              "cafe": ["exprimo", "saco", "embarras"],
-             "mismo": ["mismo"]
+             "mismo": ["mismo"],
+             "nabos": ["agarras", "tallas"]
              }
 
 map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me tomas la palabra", "me agarraste desprevenido"],
@@ -60,8 +61,9 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "saco": ["saco a concluir que tienes razón", "te saco una foto?", "en saco o en costal?", "pues a correr!", "allá en Apizaco"],
             "embarras": ["en barras o en tiras?", "en barras de cárcel?", "en Barras, Coahuila"],
             "me das": ["medallones", "me das miedo", "me das tiempo de pensar?"],
-            "sacas": ["sácame de una duda", "me sacas de onda", "sácame al sol"],
+            "sacas": ["sácame de una duda", "me sacas de onda", "sácame al sol", "¿Conoces a Zacarías?", "en Zacatecas hay muchos de esos"],
             "tallo": ["ta' lloviendo", "un tallón de limpieza"],
+            "tallas": ["hay tallas grandes para que te queden mejor", "con limas y limones", "me hueles a cebolla, qué comiste?"],
             "sientate": ["te sientes agusto","siéntate, te veo cansado","siéntate a esperar","siéntate, ahorita te lo paso", "te gusta a ti eso?"],
             "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
             }
