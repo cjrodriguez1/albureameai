@@ -1,4 +1,5 @@
 import openai
+import os
 import streamlit as st
 from random import randrange
 
@@ -6,70 +7,53 @@ from random import randrange
 from streamlit_chat import message
 
 openai.api_key = st.secrets["pass"]
-f = open("nuevas.csv", "a")
+#f = open("nuevas.csv", "a")
 
 st.set_page_config(page_title="AlbureameAI", page_icon=":fire:")
 
-map_palab = {"chile": ["agarras", "meto", "sientate", "embarro"],
-             "grande": ["agarras", "meto", "sientate", "embarro"],
-             "larga": ["agarras", "meto", "sientate", "embarro"],
-             "largo": ["agarras", "meto", "sientate", "embarro"],
-             "pajaro": ["agarras", "meto", "sientate", "embarro"],
-             "pájaro": ["agarras", "meto", "sientate", "embarro"],
-             "tronco": ["agarras", "meto", "sientate", "embarro"],
-             "camaron": ["agarras", "meto", "sientate", "embarro"],
-             "camarón": ["agarras", "meto", "sientate", "embarro"],
-             "pepino": ["agarras", "meto", "sientate", "embarro"],
-             "elote": ["agarras", "meto", "sientate", "embarro"],
-             "birote": ["agarras", "meto", "sientate", "embarro"],
-             "chorizo": ["agarras", "meto", "sientate", "embarro"],
+mmap = {}
+def get_map_palab(filename, value):
+    file_palab = open(filename, "r", encoding='utf-8')
+    for line in file_palab:
+        all_words = line.split(",")
+        for word in all_words:
+            word = word.strip()
+            if len(word) > 1:
+                mmap[word.strip()] = value
+    file_palab.close()
+
+def populate_map(directory_name):
+    directory = os.fsencode(directory_name)
+    for file in os.listdir(directory):
+        filename = os.fsencode(file).decode()
+        value_word = filename.split(".")[0]
+        get_map_palab(directory_name + "/" + filename, value_word)
+
+populate_map("palabras")
+
+map_palab = {"nepe": ["agarras", "meto", "sientate", "embarro"],
              "presta": ["grande"],
              "meto": ["metete"],
              "chico": ["trueno", "como", "me das", "hago", "pasas"],
-             "chiquito": ["trueno", "como", "me das", "hago"],
-             "atrás": ["trueno", "como", "me das", "hago"],
-             "atras": ["trueno", "como", "me das", "hago"],
-             "leche": ["sacas", "embarro"],
              "blanco": ["sacas", "embarro"],
-             "claro": ["sacas", "embarro"],
-             "chispas": ["sacas", "embarro"],
-             "crema": ["sacas", "embarro"],
              "chaqueta": ["haces", "me das"],
              "mano": ["haces", "me das"],
              "cabeza": ["agarras", "meto"],
              "piernas": ["alzo"],
              "panza": ["hago"],
              "pancita": ["hago"],
-             "hermana": ["prestas", "pasas", "hago"],
-             "hija": ["prestas", "pasas", "hago"],
-             "hijas": ["prestas", "pasas", "hago"],
+             "hermana": ["prestas", "pasas", "hago", "empino"],
              "pulmón": ["tallo"],
              "lomo": ["tallo"],
-             "papaya": ["trueno", "como", "exprimo", "me das"], #concha, dona
              "concha": ["trueno", "como", "exprimo", "me das"],
-             "dona": ["trueno", "como", "exprimo", "me das"],
-             "coliflor": ["trueno", "como", "exprimo", "me das"],
-             "cola": ["trueno", "como", "exprimo", "me das"],
              "tripa": ["trueno"],
-             "calabaza": ["exprimo", "saco", "embarras"],
-             "cacahuate": ["exprimo", "saco", "embarras"],
-             "cacahuates": ["exprimo", "saco", "embarras"],
-             "frijoles": ["exprimo", "saco", "embarras"],
-             "café": ["exprimo", "saco", "embarras"],
              "cafe": ["exprimo", "saco", "embarras"],
-             "café": ["exprimo", "saco", "embarras"],
-             "cafecito": ["exprimo", "saco", "embarras"],
-             "mismo": ["mismo"],
-             "alburear": ["alburear"],
-             "sácame": ["embarro"],
-             "sacas": ["embarro"],
-             "palmas": ["haces", "me das"],
-             "pino": ["pongo"]
+             "mismo": ["mismo"]
              }
 
 map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me tomas la palabra", "me agarraste desprevenido"],
             "sumo": ["asumo que tienes razón", "su moronga joven", "te resumo los hechos", "en su molcajete", "su humilde morada"],
-            "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals", "te meto en problemas", "me hueles a cebolla, pues qué comiste?"],
+            "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals" "te meto en problemas"],
             "alzo": ["al zócalo", "al zorrillo lo mataron"],
             "pongo": ["te pongo en problemas", "te pongo en aprietos"],
             "empino": ["en Pino Suárez"],
@@ -81,29 +65,35 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "pasas": ["¿cómo pasas a creer?", "pasa a lo siguiente", "mejor échame la culpa", "échame las llaves!", "te pasas de lanza"],
             "hago": ["te hago un tecito", "te hago un favor", "te hago tu malteada", "Santiago", "en Agosto"],
             "trueno": ["todo re bien tostado", "reviento de alegría", "rompo en llanto al oir eso", "a travieso nadie me gana!", "ah, travieso el muchacho!"],
-            "como": ["¿cómo crees, en serio?", "cómo no se me ocurrió antes!"],
+            "como": ["¿cómo crees, en serio?", "cómo no se me ocurrió antes!", "como que andas medio incoherente hoy"],
             "exprimo": ["es primero del mes?", "¿es primo suyo el sujeto de ahí?"],
-            "saco": ["saco a concluir que tienes razón", "te saco una foto?", "en saco o en costal?", "pues a correr!"],
+            "saco": ["saco a concluir que tienes razón", "te saco una foto?", "en saco o en costal?", "pues a correr!", "allá en Apizaco"],
             "embarras": ["en barras o en tiras?", "en barras de cárcel?", "en Barras, Coahuila"],
             "me das": ["medallones", "me das miedo", "me das tiempo de pensar?"],
             "sacas": ["sácame de una duda", "me sacas de onda", "sácame al sol"],
             "tallo": ["ta' lloviendo", "un tallón de limpieza"],
             "sientate": ["te sientes agusto","siéntate, te veo cansado","siéntate a esperar","siéntate, ahorita te lo paso", "te gusta a ti eso?"],
             "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
-            "alburear": ["¿Alburear? Yo le dí clases a Polo Polo", "¿Alburear? Yo les enseñé a Chaf y Queli", "A ver, vamos a medirnos a ver quién es más largo", "Si en albures me la ganas, al burro se la ... ¿cómo iba?", "Siéntate a aprender"]
             }
+
 openers = ["Voy a Palmas, si me haces ese favor", "Cuando compito, compito duro", "El Pájaro con suelas", "No imaginé ver hijas tan grandes!", "Leche de Zacatecas", "Sácame de una duda", "En Pino Suárez te dejo", "A tu hermana no la he visto"]
 
 def generate_response(prompt):
     for word in prompt.split(" "):
-        word = word.lower()
-        if map_palab.get(word) != None:
+        if mmap.get(word) != None:
+            possib = map_palab.get(mmap.get(word))
+            index = randrange(len(possib))
+            responses = map_cont[possib[index]]
+            index = randrange(len(responses))
+            return responses[index]
+        elif map_palab.get(word) != None:
             possib = map_palab.get(word)
             index = randrange(len(possib))
             responses = map_cont[possib[index]]
             index = randrange(len(responses))
             return responses[index]
-    f.write(prompt + "\n")
+
+    #f.write(prompt + "\n")
     return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
@@ -135,4 +125,4 @@ if st.session_state['generated']:
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
-f.close()
+#f.close()
