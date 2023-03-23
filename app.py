@@ -36,7 +36,6 @@ map_palab = {"nepe": ["agarras", "meto", "sientate", "embarro"],
              "meto": ["metete"],
              "chico": ["trueno", "como", "me das", "hago", "pasas"],
              "dedo": ["metete"],
-             "meto": ["metete"],
              "blanco": ["sacas", "embarro"],
              "chaqueta": ["haces", "me das"],
              "mano": ["haces", "me das"],
@@ -59,7 +58,7 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals" "te meto en problemas", "aja toro!"],
             "alzo": ["al zócalo", "al zorrillo lo mataron", "al socabón casi te caes", "al sobaco le huele"],
             "pongo": ["te pongo en problemas", "te pongo en aprietos"],
-            "empino": ["en Pino Suárez"],
+            "empino": ["en Pino Suárez te paso a dejar"],
             "grande": ["te brindo la grande", "pues, a la larga te acostumbras", "que milargo que dices algo", "está pelón lo que dices"],
             "embarro": ["en barro sabe mejor", "en barrotes de cárcel", "en cajones también"],
             "haces": ["me haces el gran favor", "dos pa' llevar y una para comer aquí", "hazme el paro", "hazme la buena!"],
@@ -76,12 +75,12 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "me das": ["medallones", "me das miedo", "me das tiempo de pensar?", "Medellín es muy lindo"],
             "sacas": ["sácame de una duda", "me sacas de onda", "sácame al sol", "¿Conoces a Zacarías?", "en Zacatecas hay muchos de esos"],
             "tallo": ["ta' lloviendo", "un tallón de limpieza"],
-            "tallas": ["hay tallas grandes para que te queden mejor", "con limas y limones", "me hueles a cebolla, qué comiste?"],
+            "tallas": ["hay tallas grandes para que te queden mejor", "con limas y limones para que te hidrates bien", "me hueles a cebolla, qué comiste?"],
             "sientate": ["¿te sientes agusto?", "siéntate, te veo cansado","siéntate a esperar","siéntate, ahorita te lo paso", "te gusta a ti eso?", "sentadito te ves mas bonito",],
-            "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
+            "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya!","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
             }
 
-openers = ["Voy a Palmas, si me haces ese favor", "Cuando compito, compito duro", "El Pájaro con suelas", "No imaginé ver hijas tan grandes!", "Leche de Zacatecas", "Sácame de una duda", "En Pino Suárez te dejo", "A tu hermana no la he visto"]
+comodines = ["Voy a Palmas, si me haces ese favor", "Cuando compito, compito duro", "El Pájaro con suelas", "No imaginé ver hijas tan grandes!", "Leche de Zacatecas para que te nutras bien", "Sácame de una duda", "En Pino Suárez te dejo y paso por ti luego", "A tu hermana no la he visto"]
 
 def generate_response(prompt):
     for word in prompt.split(" "):
@@ -99,7 +98,9 @@ def generate_response(prompt):
             return responses[index]
 
     #f.write(prompt + "\n")
-    return "No tengo contestación para '{}'".format(prompt)
+    index = randrange(len(comodines))
+    return comodines[index] + "*"
+    #return "No tengo contestación para '{}'".format(prompt)
 
 #Creating the chatbot interface
 st.title("Alburéame A.I.")
