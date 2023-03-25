@@ -1,4 +1,2 @@
 openai
 streamlit_chat
-pandas
-git
