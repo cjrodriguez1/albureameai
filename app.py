@@ -4,7 +4,7 @@ import json
 import streamlit as st
 
 from random import randrange
-from google.cloud import storage
+#from google.cloud import storage
 
 
 
