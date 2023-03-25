@@ -3,30 +3,34 @@
         "agárrame que me caigo",
         "me agarras descuidado",
         "me tomas la palabra",
-        "me agarraste desprevenido"
+        "me agarraste desprevenido",
+        "agarra la onda, chamaco"
     ],
     "sumo": [
         "asumo que tienes razón",
-        "su moronga joven",
-        "te resumo los hechos",
-        "en su molcajete",
+        "su moronga joven, no la quiere en teleras?",
+        "te resumo los hechos para que te queden claros",
+        "¿en su molcajete le pongo la que pica?",
         "su humilde morada"
     ],
     "meto": [
-        "me torcí un dedo",
-        "me toca de nuevo",
-        "me tocas el valste meto en problemas"
+        "me torcí un dedo con el esfuerzo",
+        "me toca ponerte el ejemplo de nuevo",
+        "me tocas el vals Zacatecano",
+        "te meto en problemas"
     ],
     "alzo": [
-        "al zócalo",
-        "al zorrillo lo mataron"
+        "al Zócalo, ahí en el mero centro",
+        "al zorrillo lo mataron, muchacho"
     ],
     "pongo": [
         "te pongo en problemas",
+        "te pongo el mal ejemplo cuatro horas después",
         "te pongo en aprietos"
     ],
     "empino": [
-        "en Pino Suárez"
+        "en Pino Suárez como a las 6 de la tarde",
+        "¿en pino o en palma?"
     ],
     "grande": [
         "te brindo la grande",
@@ -46,8 +50,9 @@
         "hazme la buena!"
     ],
     "prestas": [
-        "mejor presta atención",
-        "dame la razón"
+        "mejor presta atención a lo que haces",
+        "dame razón de los tuyos",
+        "dame la razón en este tema"
     ],
     "metete": [
         "mejor métete de doctor",
@@ -106,6 +111,7 @@
         "me sacas de onda",
         "sácame al sol",
         "¿Conoces a Zacarías?",
+        "Rumbo a Zacatecas ves todo eso",
         "en Zacatecas hay muchos de esos"
     ],
     "tallo": [
@@ -114,7 +120,8 @@
     ],
     "tallas": [
         "hay tallas grandes para que te queden mejor",
-        "con limas y limones",
+        "Con limones de Colima",
+        "Con esas limas haz tu limonada",
         "me hueles a cebolla, qué comiste?"
     ],
     "sientate": [
@@ -123,6 +130,11 @@
         "siéntate a esperar",
         "siéntate, ahorita te lo paso",
         "te gusta a ti eso?"
+    ],
+    "hermana": [
+        "hermanas tengo dos, la grande es Pati, y la de en medio Rosa",
+        "¿Mi hermana la negra? cuando quieras te la presento",
+        "Mi hermana la gorda te quiere conocer"
     ],
     "mismo": [
         "no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana",

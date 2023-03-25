@@ -22,6 +22,7 @@ mmap = {} #<--- map para leer los archivos csv
 map_palab = {} #<--- map para las interpretaciones
 map_cont = {} #<--- map para las contestaciones
 map_comodines = {} #<--- map para los comodines
+
 def get_map_palab(filename, value):
     file_palab = open(filename, "r", encoding='utf-8')
     for line in file_palab:
