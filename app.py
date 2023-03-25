@@ -4,11 +4,6 @@ import json
 import streamlit as st
 
 from random import randrange
-#from google.cloud import storage
-
-
-
-
 
 # pip install streamlit-chat
 from streamlit_chat import message
