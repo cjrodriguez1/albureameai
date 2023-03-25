@@ -13,6 +13,9 @@ openai.api_key = st.secrets["pass"]
 
 st.set_page_config(page_title="AlbureameAI", page_icon=":fire:")
 
+#Creating the chatbot interface
+st.title(":fire: Alburéame A.I.:fire:")
+
 
 
 mmap = {} #<--- map para leer los archivos csv
@@ -44,9 +47,9 @@ def populate_given_map(directory_name, given_map):
     for key in data:
         given_map[key] = data[key]
 
-populate_given_map("contestaciones/interpretaciones.json", map_palab)
-populate_given_map("contestaciones/contextos.json", map_cont)
-populate_given_map("contestaciones/comodines.json", map_comodines)
+populate_given_map("contextos/interpretaciones.json", map_palab)
+populate_given_map("contextos/contestaciones.json", map_cont)
+populate_given_map("contextos/comodines.json", map_comodines)
 
 
 def generate_response(prompt):
@@ -70,8 +73,7 @@ def generate_response(prompt):
     return comodines_list[index] + "*"
     #return "No tengo contestación para '{}'".format(prompt)
 
-#Creating the chatbot interface
-st.title("Alburéame A.I.")
+
 
 # Storing the chat
 if 'generated' not in st.session_state:
