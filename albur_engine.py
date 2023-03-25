@@ -1,7 +1,9 @@
 import os
+import json
 from random import randrange
 
 mmap = {}
+map_cont = {} # <--- mapa para las contestaciones
 def get_map_palab(filename, value):
     file_palab = open(filename, "r", encoding='utf-8')
     for line in file_palab:
@@ -41,7 +43,15 @@ map_palab = {"nepe": ["agarras", "meto", "sientate", "embarro"],
              "mismo": ["mismo"],
              "nabos": ["agarras", "tallas"]
              }
+def populate_map_cont(directory_name):
+    with open(directory_name, encoding='utf-8') as f:
+        data = json.load(f)
+    for key in data:
+        map_cont[key] = data[key]
 
+populate_map_cont("contestaciones/contextos.json")
+
+'''
 map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me tomas la palabra", "me agarraste desprevenido"],
             "sumo": ["asumo que tienes razón", "su moronga joven", "te resumo los hechos", "en su molcajete", "su humilde morada"],
             "meto": ["me torcí un dedo", "me toca de nuevo", "me tocas el vals" "te meto en problemas"],
@@ -67,6 +77,9 @@ map_cont = {"agarras": ["agárrame que me caigo", "me agarras descuidado", "me t
             "sientate": ["te sientes agusto","siéntate, te veo cansado","siéntate a esperar","siéntate, ahorita te lo paso", "te gusta a ti eso?"],
             "mismo": ["no es lo mismo la cómoda de tu hermana, que acomódame a tu hermana", "no es lo mismo chicas, préstenme el piano, que chicas, présteneme el chicaspiano", "no es lo mismo la papaya tapatía, que tia, tápate la papaya","no es lo mismo un metro de encaje negro, a que un negro te encaje el metro"],
             }
+'''
+
+comodines = ["Voy a Palmas, si me haces ese favor", "Cuando compito, compito duro", "El Pájaro con suelas", "No imaginé ver hijas tan grandes!", "Leche de Zacatecas para que te nutras bien", "Sácame de una duda", "En Pino Suárez te dejo y paso por ti luego", "A tu hermana no la he visto"]
 
 def parse_text(text):
     for word in text.split(" "):
@@ -86,10 +99,8 @@ def parse_text(text):
     return None
     '''
     for word in text.split(" "):
-        
-
     return None
-'''
+    '''
 
 text = input("Comencemos: ")
 nuevas = []
@@ -104,3 +115,9 @@ while(text != "EXIT"):
 
 print("Gracias por participar")
 print("Las frases nuevas: {}".format(nuevas))
+print(map_cont)
+
+'''
+with open("contestaciones/interpretaciones.json", "w", encoding='utf-8') as f:
+    json.dump(map_palab, f, ensure_ascii=False, indent=4)
+'''
