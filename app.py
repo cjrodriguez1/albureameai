@@ -17,12 +17,13 @@ st.set_page_config(page_title="AlbureameAI", page_icon=":fire:")
 st.title(":fire: Alburéame A.I.:fire:")
 
 
-
+# Maps required
 mmap = {} #<--- map para leer los archivos csv
 map_palab = {} #<--- map para las interpretaciones
 map_cont = {} #<--- map para las contestaciones
 map_comodines = {} #<--- map para los comodines
 
+# These next two methods together generate map off the CSV files
 def get_map_palab(filename, value):
     file_palab = open(filename, "r", encoding='utf-8')
     for line in file_palab:
@@ -33,6 +34,7 @@ def get_map_palab(filename, value):
                 mmap[word.strip()] = value
     file_palab.close()
 
+
 def populate_mmap(directory_name):
     directory = os.fsencode(directory_name)
     for file in os.listdir(directory):
@@ -40,14 +42,19 @@ def populate_mmap(directory_name):
         value_word = filename.split(".")[0]
         get_map_palab(directory_name + "/" + filename, value_word)
 
-populate_mmap("palabras")
 
+
+# Generating maps off the JSON files
 def populate_given_map(directory_name, given_map):
     with open(directory_name, encoding='utf-8') as f:
         data = json.load(f)
     for key in data:
         given_map[key] = data[key]
 
+# Call to method that generates maps off CSV files
+populate_mmap("palabras")
+
+# Call to method that generates maps off the JSON files
 populate_given_map("contextos/interpretaciones.json", map_palab)
 populate_given_map("contextos/contestaciones.json", map_cont)
 populate_given_map("contextos/comodines.json", map_comodines)
