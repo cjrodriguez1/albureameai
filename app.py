@@ -1,6 +1,7 @@
 import openai
 import os
 import json
+import re
 import streamlit as st
 
 from random import randrange
@@ -59,6 +60,16 @@ populate_given_map("contextos/interpretaciones.json", map_palab)
 populate_given_map("contextos/contestaciones.json", map_cont)
 populate_given_map("contextos/comodines.json", map_comodines)
 
+def detectar_calambur(prompt):
+    alltext = re.sub('[^A-Za-z0-9]+', '', prompt)
+    for key in mmap.keys():
+        if key in alltext:
+            possib = map_palab.get(mmap.get(key))
+            index = randrange(len(possib))
+            responses = map_cont[possib[index]]
+            index = randrange(len(responses))
+            return responses[index]
+    return None
 
 def generate_response(prompt):
     for word in prompt.split(" "):
@@ -75,10 +86,14 @@ def generate_response(prompt):
             index = randrange(len(responses))
             return responses[index]
 
+    calambur_resp = detectar_calambur(prompt)
+    if calambur_resp != None:
+        return calambur_resp
+
     #f.write(prompt + "\n")
     comodines_list = map_comodines.get("comodines")
     index = randrange(len(comodines_list))
-    return comodines_list[index] + "*"
+    return comodines_list[index]
     #return "No tengo contestación para '{}'".format(prompt)
 
 
